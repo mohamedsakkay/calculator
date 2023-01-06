@@ -5,7 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+.calculator {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+    height: 30%;
+    background-color:rgb(226, 236, 240);
+    padding: 10px 100px 10px 100px;
+    border-radius: 10px;
+}
+
+.calculator h1 {
+    text-align: center;
+    color: rgb(247, 154, 121);
+}
+
+.calculator input, select {
+    width: 0px;
+    height: 0px;
+    width: 100%;
+    height: 10%;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+} 
+
+input:last-child {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input:last-child:hover {
+    background-color: red;
+}
+
+.calculator:hover {
+    background-color: rgb(104, 160, 192);
+    box-shadow: 0px 5px 6px 0px rgb(122, 121, 121);  
+}
+    </style>
 
 </head>
 <body>
@@ -27,6 +80,64 @@
         <br>
         <input type="submit" value="Try me!" class="result">
     </div>
-<script src="main.js"></script>  
+<script>
+let res = document.querySelector('.result'); // we want to use res in event, so we should create the variable before setting the event //
+
+res.addEventListener('click', () => {   
+    
+let x = parseInt (document.querySelector('.numberRight').value); // parseInt convert the number to int // 
+
+let y = parseInt (document.querySelector('.numberLeft').value); // .value because we want to bring the value inserted in the element //
+
+let op = document.querySelector('#operator').value;
+                                                                
+    if (x >=0 && y>=0) {                                        // && means and || means or //
+
+    switch (op) {
+        case '+' :
+            res = x +y
+            console.log(res);
+            alert(res)
+            break;
+        case '-' :
+                res = x - y
+                console.log(res);
+                alert(res)
+            break; 
+        case '*' :
+                res = x * y
+                console.log(res);
+                alert(res)
+            break;    
+        case '/' : if (y==0) {                                // in order to make a condition after selecting the value '/', we put the if statement after the case // 
+            console.log("It's over 9000 !")
+            alert("It's over 9000 !")
+        }
+        else   {
+                res = x / y
+                console.log(res);
+                alert(res)
+               }
+            break;
+        case '%' : if (y==0) {
+            console.log("It's over 9000 !")
+            alert("It's over 9000 !")
+        }
+        else  {
+                res = x % y
+                console.log(res);
+                alert(res)
+              }
+            break;
+    }
+    }
+    else alert ('Error :(')
+    
+})
+
+setInterval(function(){
+    alert('please, use me!')
+}, 30000)
+</script>  
 </body>
 </html>
